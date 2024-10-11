@@ -1,0 +1,29 @@
+{
+  "name": "blood-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@circle-fin/circle-sdk": "^2.9.0",
+    "@circle-fin/developer-controlled-wallets": "^4.5.1",
+    "@circle-fin/smart-contract-platform": "^4.3.0",
+    "@circle-fin/user-controlled-wallets": "^4.5.0",
+    "@types/uuid": "^10.0.0",
+    "bcrypt": "^5.1.1",
+    "config": "^3.3.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.6.2",
+    "node-fetch": "^3.3.2",
+    "wagmi": "^2.12.17"
+  }
+}
