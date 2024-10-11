@@ -1,7 +1,7 @@
 export const senderAddress = '<SENDER_WALLET_ADDRESS>';
 export const recipientAddress = '<RECIPIENT_WALLET_ADDRESS>';
 export const senderPrivateKey = '<SENDER_WALLET_PRIVATE_KEY>';
-export const rpcEndpoint = '<RPC_ENDPOINT_URL>'; 
+export const rpcEndpoint = process.env.RPC_ENDPOINT_URL
 export const tokenAddress = '<USDC_TOKEN_CONTRACT>';
 export const minTokenAbi = [
     {
