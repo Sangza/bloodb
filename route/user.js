@@ -3,6 +3,7 @@ require('dotenv').config();
 const bcrypt =  require('bcrypt');
 const mongoose = require('mongoose');
 const express = require('express');
+const auth = require('../middleware/auth');
 const route = express.Router();
 const {Users,validateUser} = require('../model/user.js')
 
@@ -36,5 +37,10 @@ res.header('x-auth-token',token).send(_.pick(user,['username','email','role']))
 
 })
 
+
+route.get('/:bloodType', auth, async(req,res)=>{
+  const users = await Users.find(req.params.bloodType);
+  res.send(users);
+})
 
 module.exports = route;
