@@ -44,3 +44,5 @@ router.get('/:id',async(req,res)=>{
     if(!criteria) return res.status(400).send('User doesn\'t exist');
     res.send(criteria);
 })
+
+module.exports = router;

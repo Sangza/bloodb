@@ -6,7 +6,7 @@ const route = express.Router();
 const { Users } = require('../model/user');
 
 
-route.post('/'), async(req,res)=>{
+route.post('/', async(req,res)=>{
     const { error } = validateUser(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
@@ -17,14 +17,17 @@ route.post('/'), async(req,res)=>{
     if(!validatepassword) return res.status(400).send('Invalid user and password');
 
     const token = user.generateAuthToken();
-    res.send(token);
-}
+    res.send({
+        "email":user.email,
+        "token":token,   
+    });
+})
 
 
 function validateUser(user){
     const schema = Joi.object({
         email: Joi.string().email({minDomainSegments : 2,tlds:{allow:['com','net']}}),
-        password:Joi.string().min(6).pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+        password:Joi.string().min(6)
     })
     return schema.validate(user);
 }

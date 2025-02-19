@@ -17,7 +17,9 @@ const criteriaSchema = new mongoose.Schema({
     },
     infection:Boolean,
     fever:Boolean,
-    lastDonation: Date.now(),
+    lastDonation:{
+        type: Date
+    },
     breastFeeding:Boolean,
     hyperTension:Boolean,
     diabeteMellitus:Boolean,

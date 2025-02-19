@@ -6,7 +6,7 @@ module.exports =  function auth(req,res,next){
     const token = req.header('x-auth-token');
     if(!token) res.status(401).send('unauthorized');
     try {
-        const decoded = jwt.verify(tokeb, config.get('jwtPrivateKey'));
+        const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
         req.user = decoded;
         next();
     } catch (error) {

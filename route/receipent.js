@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post('/', auth,  async(req,res)=>{
+router.post('/', auth, async(req,res)=>{
     const user = await Users.findById(req.body.userId);
     if(!user) return res.status(400).send('This action is only carried out by a user');
 
@@ -47,3 +47,5 @@ router.get('/:id',auth, async(req,res)=>{
 
 
 } )
+
+module.exports = router;

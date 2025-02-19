@@ -30,3 +30,5 @@ router.get('/:bloodType',auth,async(req,res)=>{
     const name = await Users.find(bloodtype).toArray();
     res.send(name);
 } )
+
+module.exports = router;

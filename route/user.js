@@ -27,7 +27,6 @@ route.post('/', async(req,res)=>{
 const saltround = parseInt(process.env.SALT_ROUNDS,10) || 10;
 
 const salt = await bcrypt.genSalt(saltround);
-console.log(user.password);
 user.password = await bcrypt.hash(user.password,salt);
 
 await user.save();
@@ -38,9 +37,24 @@ res.header('x-auth-token',token).send(_.pick(user,['username','email','role']))
 })
 
 
-route.get('/:bloodType', auth, async(req,res)=>{
-  const users = await Users.find(req.params.bloodType);
+route.get('/', async(req,res)=>{
+  const users = await Users.find(({role:'donor'}));
   res.send(users);
 })
+
+route.get('/:type', async (req, res) => {
+  const bloodType = req.query.type;
+  console.log("Requested blood type:", bloodType); // Log the requested blood type
+
+  try {
+      const usersss = await Users.find({ role: 'donor', bloodType: bloodType });
+      console.log("Fetched users:", usersss); // Log the fetched users
+      res.send(usersss);
+  } catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).send({ message: 'Internal server error' });
+  }
+});
+
 
 module.exports = route;

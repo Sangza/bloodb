@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         enum:['donor','recipient']
     },
-    bloodType:String
+    bloodType:{
+        type:String,
+        required: true,
+        enum: ['O','O+','A','-']
+    }
 })
 userSchema.methods.generateAuthToken = function (){
     const token = jwt.sign(
@@ -43,7 +47,8 @@ const schema = Joi.object({
     username:Joi.string().min(3).max(155).required(),
     email: Joi.string().email({minDomainSegments : 2, tlds:{allow: ['com', 'net']}}).required(),
     password:Joi.string().min(6).required(),
-    role:Joi.string().required()
+    role:Joi.string().required(),
+    bloodType: Joi.string().required()
 });
     return schema.validate(user);
 }
